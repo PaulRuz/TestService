@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+    <h2>New Event</h2>
+    <form method="post" class="event-form">
+        <p>
+            <label for="name">Your name event: </label>
+            <input name="Name" type="text" />
+        </p>
+        <p>
+            <label for="value">Value: </label>
+            <input name="Value" type="number" min="0" />
+        </p>     
+        <button type="submit">Send event</button>
+    </form>
+    
+    <hr>
+
+    <h4>Result</h4>
+    <div>
+        <p>
+            <label for="result">Event result: </label>
+            <input name="result" type="number" id="result-event" width="auto" value="0" readonly>
+        </p>   
+        <p>
+            <p name="time" id="current-time"></p>
+        </p>    
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

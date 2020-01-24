@@ -2,8 +2,7 @@
 
 let form = document.querySelector('.event-form'),
     inputs = form.getElementsByTagName('input'),
-    currentTime = document.querySelector('#current-time'),
-    eventResult = document.querySelector('#result-event');
+    eventResult = document.querySelector('.result-event');
 
 form.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -24,8 +23,8 @@ let startSecond = new Date().getSeconds(),
 
 setTimeout(function run() {
     showResult();
-    setTimeout(run, 10000);
-}, deltaSecond);
+    setTimeout(run, 60000);
+}, deltaSecond); 
 
 let showResult = function() {
     let request = new XMLHttpRequest();
@@ -36,10 +35,12 @@ let showResult = function() {
     request.addEventListener('readystatechange', function () {
         if (request.readyState === 4 && request.status == 200) {
             let data = JSON.parse(request.response); 
-            currentTime.textContent = data.time;
-            eventResult.value = data.value;
-        } else {
-            currentTime.textContent = "Произошла ошибка";
+            createResultDisplay(data);
         }
     });
 };
+
+function createResultDisplay(event) {
+    let resultHTML = '<div><p>' + event.time + '</p><p>' + event.value + '</p><hr></div>';
+    eventResult.insertAdjacentHTML('beforeend', resultHTML);
+}
